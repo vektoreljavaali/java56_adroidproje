@@ -1,0 +1,7 @@
+1- Haberler->
+	Güncel Haber Listesi->
+	Detay a Gidecek ->Google News kullansın.
+2- Kamera-> Karema çekimi yapılabilecek
+3- RealTime Db-> Sınıf içi mesajlaşma uygulaması(Firebase)
+4- Db deki kullanıcı listesini listeyelen sayfa
+5- Bildirim almak

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_camera"
+            android:icon="@mipmap/ic_launcher_camera"
+            android:title="Kamera" />
+        <item
+            android:id="@+id/nav_news"
+            android:icon="@mipmap/ic_launcher_news"
+            android:title="Haberler" />
+        <item
+            android:id="@+id/nav_messages"
+            android:icon="@mipmap/ic_launcher_messages"
+            android:title="Mesajlarma Uygulaması" />
+        <item
+            android:id="@+id/nav_userlist"
+            android:icon="@mipmap/ic_launcher_userlist"
+            android:title="User List" />
+        <item
+            android:id="@+id/nav_notification"
+            android:icon="@mipmap/ic_launcher_notification"
+            android:title="Bildirim" />
+
+    </group>
+</menu>
