@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.Menu;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -16,9 +17,12 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
+import androidx.annotation.NonNull;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -26,7 +30,15 @@ import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.appcheck.FirebaseAppCheck;
+import com.google.firebase.appcheck.safetynet.SafetyNetAppCheckProviderFactory;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.iid.FirebaseInstanceIdReceiver;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.vektorel.componentsandlogin.databinding.ActivityMainNavbarBinding;
+import com.vektorel.componentsandlogin.models.FirebaseUser;
 import com.vektorel.componentsandlogin.util.StaticValues;
 
 import org.json.JSONException;
@@ -36,11 +48,14 @@ public class MainActivity_Navbar extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainNavbarBinding binding;
-
+    private DatabaseReference mDatabase;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        FirebaseApp.initializeApp(this);
+        FirebaseAppCheck firebaseAppCheck = FirebaseAppCheck.getInstance();
+        firebaseAppCheck.installAppCheckProviderFactory(
+                SafetyNetAppCheckProviderFactory.getInstance());
         binding = ActivityMainNavbarBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
@@ -70,6 +85,30 @@ public class MainActivity_Navbar extends AppCompatActivity {
             Log.d("HATA...: ", "onCreate: "+ e.toString());
             e.printStackTrace();
         }
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        FirebaseUser user = new FirebaseUser("Muhammet HOCA", "muhammedli55@gmail.com");
+        mDatabase.child("users").child(user.id).setValue(user);
+        mDatabase.push();
+
+        FirebaseMessaging.getInstance().getToken()
+                .addOnCompleteListener(new OnCompleteListener<String>() {
+                    @Override
+                    public void onComplete(@NonNull Task<String> task) {
+                        if (!task.isSuccessful()) {
+                            Log.w("HATA", "Fetching FCM registration token failed", task.getException());
+                            return;
+                        }
+
+                        // Get new FCM registration token
+                        String token = task.getResult();
+
+                        // Log and toast
+                        String msg = "Bir Veri GELDİ...: "+ token;
+                        Log.d("HATA", msg);
+                        //Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+                    }
+                });
+
       //  agkontrol();
     }
 

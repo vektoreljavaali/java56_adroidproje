@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "513817875962",
+    "project_id": "java56uygulama",
+    "storage_bucket": "java56uygulama.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:513817875962:android:4a38f31b0fccaadffb4043",
+        "android_client_info": {
+          "package_name": "com.vektorel.componentsandlogin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "513817875962-k17jscje8e3n13rdr5modnrjlebermoc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBluhTyV0cY6ArU99GyvDcDt_E4aX1eNng"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "513817875962-k17jscje8e3n13rdr5modnrjlebermoc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
